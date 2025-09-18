@@ -1,8 +1,13 @@
 import requests
 import os
 
+# Load Etherscan API key
+ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY", "YourApiKeyToken")
+
+# Safety check
 if ETHERSCAN_API_KEY == "YourApiKeyToken" or not ETHERSCAN_API_KEY:
     print("⚠️ Warning: ETHERSCAN_API_KEY is not set. Please configure it in GitHub Codespaces secrets.")
+
 COINGECKO_API = "https://api.coingecko.com/api/v3/simple/price"
 
 def get_eth_balance(address):
