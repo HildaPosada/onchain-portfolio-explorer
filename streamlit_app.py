@@ -81,4 +81,24 @@ if address:
                 <!-- Hash -->
                 <p style="margin:0; font-size:14px; color:#aaa;">Txn Hash</p>
                 <p style="margin:0 0 12px 0; font-size:13px; word-break:break-all;">
-                    <a
+                    <a href="https://etherscan.io/tx/{tx['hash']}" target="_blank" style="color:#82aaff;">
+                        {tx['hash'][:12]}...{tx['hash'][-6:]}
+                    </a>
+                </p>
+            
+                <!-- From / To -->
+                <p style="margin:0;">📤 <b>From:</b> 
+                    <a href="https://etherscan.io/address/{tx['from']}" target="_blank" style="color:#9cdcfe;">
+                        {tx['from'][:12]}...{tx['from'][-6:]}
+                    </a>
+                </p>
+                <p style="margin:0;">📥 <b>To:</b> 
+                    <a href="https://etherscan.io/address/{tx['to']}" target="_blank" style="color:#c3e88d;">
+                        {tx['to'][:12]}...{tx['to'][-6:]}
+                    </a>
+                </p>
+            </div>
+            """
+            st.markdown(html, unsafe_allow_html=True)
+    else:
+        st.info("No recent transactions found.")
