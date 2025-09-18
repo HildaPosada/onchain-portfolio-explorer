@@ -86,36 +86,39 @@ if address:
     if txs:
         for tx in txs:
             value_eth = int(tx["value"]) / 1e18
-            st.markdown(f"""
-            <div style='background: #1e2a38;
-                        border-radius: 12px;
-                        padding: 16px;
-                        margin-bottom: 12px;
-                        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-                        color: #f5f7fa;
-                        font-family: Inter, sans-serif;
-                        position: relative;'>
-            
+            html = f"""
+            <div style="background:#1e2a38;
+                        border-radius:12px;
+                        padding:16px;
+                        margin-bottom:12px;
+                        box-shadow:0 4px 8px rgba(0,0,0,0.3);
+                        color:#f5f7fa;
+                        font-family:Inter, sans-serif;
+                        position:relative;">
+                
                 <!-- ETH Value Badge -->
-                <div style='position: absolute; top: 16px; right: 16px;
-                            background: #4cafef; color: #000;
-                            padding: 4px 10px; border-radius: 20px;
-                            font-weight: bold; font-size: 13px;'>
+                <div style="position:absolute; top:16px; right:16px;
+                            background:#4cafef; color:#000;
+                            padding:4px 10px; border-radius:20px;
+                            font-weight:bold; font-size:13px;">
                     {value_eth:.4f} ETH
                 </div>
 
                 <!-- Hash -->
-                <p style='margin:0; font-size:14px; color:#aaa;'>Txn Hash</p>
-                <p style='margin:0 0 12px 0; font-size:13px; word-break:break-all;'>
+                <p style="margin:0; font-size:14px; color:#aaa;">Txn Hash</p>
+                <p style="margin:0 0 12px 0; font-size:13px; word-break:break-all;">
                     {tx['hash'][:12]}...{tx['hash'][-6:]}
                 </p>
             
                 <!-- From / To -->
-                <p style='margin:0;'>📤 <b>From:</b> 
-                    <span style='color:#9cdcfe;'>{tx['from'][:12]}...{tx['from'][-6:]}</span>
+                <p style="margin:0;">📤 <b>From:</b> 
+                    <span style="color:#9cdcfe;">{tx['from'][:12]}...{tx['from'][-6:]}</span>
                 </p>
-                <p style='margin:0;'>📥 <b>To:</b> 
-                    <span style='color:#c3e88d;'>{tx['to'][:12]}...{tx['to'][-6:]}</span>
+                <p style="margin:0;">📥 <b>To:</b> 
+                    <span style="color:#c3e88d;">{tx['to'][:12]}...{tx['to'][-6:]}</span>
                 </p>
             </div>
-            """, unsafe_allow_html=True)   # 👈 THIS PART IS IMPORTANT
+            """
+            st.markdown(html, unsafe_allow_html=True)
+    else:
+        st.info("No recent transactions found.")
