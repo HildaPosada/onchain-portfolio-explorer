@@ -36,6 +36,13 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Title
-st.markdown("<h1 style='text-align: center;'>🔗 Blockchain Portfolio Explorer</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #d3d3d3;'>Explore Ethereum wallets with real-time balance
+# Title + Subtitle
+st.markdown("""
+    <h1 style='text-align: center;'>🔗 Blockchain Portfolio Explorer</h1>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <p style='text-align: center; color: #d3d3d3;'>
+        Explore Ethereum wallets with real-time balances, USD value, and on-chain transactions
+    </p>
+""", unsafe_allow_html=True)
