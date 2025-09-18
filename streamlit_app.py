@@ -67,5 +67,12 @@ if address:
 
     # Dashboard metrics
     col1, col2, col3 = st.columns(3)
-    col1.metric("ETH Balance", f"{eth_balance:.4f} ETH")
-    col2.me
+
+    with col1:
+        st.metric("ETH Balance", f"{eth_balance:.4f} ETH")
+
+    with col2:
+        st.metric("USD Value", f"${usd_value:,.2f}")
+
+    with col3:
+        st.metric("ETH Price", f"${eth_price:,.2f}")
