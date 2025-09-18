@@ -46,3 +46,46 @@ st.markdown("""
         Explore Ethereum wallets with real-time balances, USD value, and on-chain transactions
     </p>
 """, unsafe_allow_html=True)
+
+# Divider
+st.markdown("<hr>", unsafe_allow_html=True)
+
+# Default wallet (Vitalik) for demo
+default_wallet = "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+
+address = st.text_input(
+    "🔍 Enter Ethereum Wallet Address",
+    value=default_wallet,
+    help="Paste any Ethereum address (0x...) to explore"
+)
+
+if address:
+    # Fetch data
+    eth_balance = get_eth_balance(address)
+    eth_price = get_eth_price()
+    usd_value = eth_balance * eth_price
+
+    # Dashboard metrics
+    col1, col2, col3 = st.columns(3)
+    col1.metric("ETH Balance", f"{eth_balance:.4f} ETH")
+    col2.metric("USD Value", f"${usd_value:,.2f}")
+    col3.metric("ETH Price", f"${eth_price:,.2f}")
+
+    st.markdown("<hr>", unsafe_allow_html=True)
+
+    # Transactions
+    st.subheader("📜 Recent Transactions")
+    txs = get_transactions(address, limit=5)
+
+    if txs:
+        for tx in txs:
+            with st.container():
+                st.markdown(f"**Hash:** `{tx['hash']}`")
+                st.write(f"📤 From: `{tx['from']}`")
+                st.write(f"📥 To: `{tx['to']}`")
+                st.write(f"💰 Value: {int(tx['value']) / 1e18:.4f} ETH")
+                st.markdown("---")
+    else:
+        st.info("No recent transactions found.")
+else:
+    st.info("👆 Enter an address above to explore on-chain data.")
