@@ -68,24 +68,4 @@ if address:
     # Dashboard metrics
     col1, col2, col3 = st.columns(3)
     col1.metric("ETH Balance", f"{eth_balance:.4f} ETH")
-    col2.metric("USD Value", f"${usd_value:,.2f}")
-    col3.metric("ETH Price", f"${eth_price:,.2f}")
-
-    st.markdown("<hr>", unsafe_allow_html=True)
-
-    # Transactions
-    st.subheader("📜 Recent Transactions")
-    txs = get_transactions(address, limit=5)
-
-    if txs:
-        for tx in txs:
-            with st.container():
-                st.markdown(f"**Hash:** `{tx['hash']}`")
-                st.write(f"📤 From: `{tx['from']}`")
-                st.write(f"📥 To: `{tx['to']}`")
-                st.write(f"💰 Value: {int(tx['value']) / 1e18:.4f} ETH")
-                st.markdown("---")
-    else:
-        st.info("No recent transactions found.")
-else:
-    st.info("👆 Enter an address above to explore on-chain data.")
+    col2.me
