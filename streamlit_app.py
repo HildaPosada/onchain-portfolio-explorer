@@ -93,13 +93,13 @@ if address:
                         margin-bottom: 12px;
                         box-shadow: 0 4px 8px rgba(0,0,0,0.3);
                         color: #f5f7fa;
-                        ont-family: Inter, sans-serif;
+                        font-family: Inter, sans-serif;
                         position: relative;'>
             
                 <!-- ETH Value Badge -->
                 <div style='position: absolute; top: 16px; right: 16px;
                             background: #4cafef; color: #000;
-                        p   adding: 4px 10px; border-radius: 20px;
+                            padding: 4px 10px; border-radius: 20px;
                             font-weight: bold; font-size: 13px;'>
                     {value_eth:.4f} ETH
                 </div>
