@@ -1,30 +1,41 @@
 import streamlit as st
 from web3_utils import get_eth_balance, get_transactions, get_eth_price
 
-st.set_page_config(page_title="Blockchain Portfolio Explorer", layout="wide")
+# Page config
+st.set_page_config(
+    page_title="Blockchain Portfolio Explorer",
+    page_icon="🔗",
+    layout="wide",
+)
 
-st.title("🔗 Blockchain Portfolio Explorer")
-st.write("Enter an Ethereum wallet address to explore balances and recent transactions.")
+# Custom CSS for award-winning design vibes
+st.markdown("""
+    <style>
+    /* Global */
+    .stApp {
+        background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+        font-family: 'Inter', sans-serif;
+        color: #f5f7fa;
+    }
+    h1, h2, h3, h4 {
+        font-weight: 600;
+        color: #ffffff;
+    }
+    .css-1d391kg, .css-1v3fvcr {
+        background-color: #1e2a38 !important;
+        border-radius: 16px !important;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .stMetric {
+        background: #1b2735;
+        border-radius: 12px;
+        padding: 15px;
+        margin: 5px;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-address = st.text_input("Ethereum Wallet Address (0x...)", value="")
-
-if address:
-    # Fetch ETH balance
-    eth_balance = get_eth_balance(address)
-    eth_price = get_eth_price()
-    usd_value = eth_balance * eth_price
-
-    st.metric(label="ETH Balance", value=f"{eth_balance:.4f} ETH", delta=f"${usd_value:,.2f} USD")
-
-    # Fetch transactions
-    st.subheader("Recent Transactions")
-    txs = get_transactions(address, limit=5)
-    if txs:
-        for tx in txs:
-            st.write(f"Hash: {tx['hash']}")
-            st.write(f"From: {tx['from']}")
-            st.write(f"To: {tx['to']}")
-            st.write(f"Value: {int(tx['value']) / 1e18:.4f} ETH")
-            st.write("---")
-    else:
-        st.write("No recent transactions found.")
+# Title
+st.markdown("<h1 style='text-align: center;'>🔗 Blockchain Portfolio Explorer</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #d3d3d3;'>Explore Ethereum wallets with real-time balance
